@@ -69,6 +69,7 @@ import org.lineageos.jelly.history.HistoryActivity
 import org.lineageos.jelly.suggestions.SuggestionsAdapter
 import org.lineageos.jelly.ui.SearchBarController
 import org.lineageos.jelly.ui.UrlBarController
+import org.lineageos.jelly.utils.AdBlocker
 import org.lineageos.jelly.utils.IntentUtils
 import org.lineageos.jelly.utils.PrefsUtils
 import org.lineageos.jelly.utils.TabUtils.openInNewTab
@@ -185,6 +186,9 @@ class MainActivity : WebViewExtActivity(), SearchBarController.OnCancelListener,
         mWebView.init(this, urlBarController, mLoadingProgress, mIncognito)
         mWebView.isDesktopMode = desktopMode
         mWebView.loadUrl(url ?: PrefsUtils.getHomePage(this))
+		
+		AdBlocker.init(this)
+		
         mSearchController = SearchBarController(mWebView,
                 findViewById(R.id.search_menu_edit),
                 findViewById(R.id.search_status),
